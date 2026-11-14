@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="512" height="512" fill="none">
+  <defs>
+    <linearGradient id="orionGoldGrad" x1="16" y1="96" x2="104" y2="14" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#D68C3E" />
+      <stop offset="55%" stop-color="#E6A65D" />
+      <stop offset="100%" stop-color="#F5C478" />
+    </linearGradient>
+    <linearGradient id="orionBgGrad" x1="0" y1="0" x2="120" y2="120" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#143834" />
+      <stop offset="100%" stop-color="#102D2A" />
+    </linearGradient>
+  </defs>
+  <!-- First Dark-Themed Official ORION Application Icon Background -->
+  <rect x="2" y="2" width="116" height="116" rx="26" fill="url(#orionBgGrad)" stroke="#24524C" stroke-width="2" />
+  <!-- Upper-Left Discovery Gold Sweeping Orbital Arc -->
+  <path d="M 22 80 C 17 50, 44 24, 83 24 C 57 28, 35 47, 33 73 C 30 75, 25 78, 22 80 Z" fill="url(#orionGoldGrad)" />
+  <!-- Growth Teal Horizon / Leaf Accent -->
+  <path d="M 41 64 C 52 57, 67 57, 79 64 C 68 62, 53 62, 41 64 Z" fill="#65A995" />
+  <!-- Lower Discovery Gold Sweeping Crescent Arc -->
+  <path d="M 15 92 C 31 64, 73 61, 95 96 C 75 74, 39 74, 15 92 Z" fill="url(#orionGoldGrad)" />
+  <!-- Warm Ivory Human-Inspired Figure Reaching Upward -->
+  <circle cx="59" cy="44" r="8.2" fill="#F7F3E9" />
+  <path d="M 33 65 C 44 56, 56 54, 66 54 C 74 45, 81 35, 87 24 C 84 40, 77 54, 68 67 C 60 80, 48 93, 33 103 C 43 89, 51 77, 55 66 C 46 64, 39 64, 33 65 Z" fill="#F7F3E9" />
+  <!-- Discovery Gold Four-Point Star at Upper-Right Apex -->
+  <path d="M 92 8 L 95.2 19.8 L 107 23 L 95.2 26.2 L 92 38 L 88.8 26.2 L 77 23 L 88.8 19.8 Z" fill="#E6A65D" />
+</svg>

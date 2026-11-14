@@ -1,0 +1,628 @@
+{
+  "entities": {
+    "Admin": {
+      "title": "Admin",
+      "description": "Explicitly provisioned platform administrator authorization record.",
+      "type": "object",
+      "properties": {
+        "adminId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "email": { "type": "string", "maxLength": 256 },
+        "role": { "type": "string", "enum": ["platform_admin"] },
+        "status": { "type": "string", "enum": ["active", "revoked"] },
+        "provisionedBy": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "provisioningMethod": { "type": "string", "enum": ["bootstrap_owner_claim", "admin_grant", "server_custom_claim"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["adminId", "email", "role", "status", "provisionedBy", "provisioningMethod", "createdAt", "updatedAt"]
+    },
+    "User": {
+      "title": "User",
+      "description": "Platform user account supporting students, teachers, school administrators, platform administrators, and independent learners.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "email": { "type": "string", "maxLength": 256 },
+        "displayName": { "type": "string", "maxLength": 120 },
+        "role": { "type": "string", "enum": ["student", "teacher", "school_admin", "independent_learner", "platform_admin"] },
+        "schoolId": { "type": "string", "maxLength": 128 },
+        "educationLevel": { "type": "string", "enum": ["Primary", "JSS", "SSS"] },
+        "selectedClass": { "type": "string", "maxLength": 32 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "displayName", "role", "educationLevel", "selectedClass", "createdAt", "updatedAt"]
+    },
+    "RolePermission": {
+      "title": "RolePermission",
+      "description": "Role-based access control permissions definition.",
+      "type": "object",
+      "properties": {
+        "roleId": { "type": "string", "maxLength": 64, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "title": { "type": "string", "maxLength": 100 },
+        "description": { "type": "string", "maxLength": 500 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["roleId", "title", "description", "createdAt"]
+    },
+    "School": {
+      "title": "School",
+      "description": "Registered Nigerian primary or secondary school.",
+      "type": "object",
+      "properties": {
+        "schoolId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "name": { "type": "string", "maxLength": 160 },
+        "state": { "type": "string", "maxLength": 64 },
+        "lga": { "type": "string", "maxLength": 100 },
+        "curriculumMode": { "type": "string", "enum": ["built_in", "custom", "hybrid"] },
+        "activeSession": { "type": "string", "maxLength": 32 },
+        "activeTerm": { "type": "string", "enum": ["First Term", "Second Term", "Third Term"] },
+        "ownerId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["schoolId", "name", "state", "lga", "curriculumMode", "activeSession", "activeTerm", "ownerId", "createdAt", "updatedAt"]
+    },
+    "SchoolMembership": {
+      "title": "SchoolMembership",
+      "description": "Trusted authorization record binding a user to a school with a verified role.",
+      "type": "object",
+      "properties": {
+        "membershipId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "schoolId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "userId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "role": { "type": "string", "enum": ["student", "teacher", "school_admin"] },
+        "status": { "type": "string", "enum": ["active", "invited", "suspended"] },
+        "authorizedBy": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["membershipId", "schoolId", "userId", "role", "status", "authorizedBy", "createdAt", "updatedAt"]
+    },
+    "StudentProfile": {
+      "title": "StudentProfile",
+      "description": "Enrolled student or independent learner academic profile.",
+      "type": "object",
+      "properties": {
+        "studentId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "userId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "schoolId": { "type": "string", "maxLength": 128 },
+        "isIndependentLearner": { "type": "boolean" },
+        "educationLevel": { "type": "string", "enum": ["Primary", "JSS", "SSS"] },
+        "currentClass": { "type": "string", "maxLength": 32 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["studentId", "userId", "schoolId", "isIndependentLearner", "educationLevel", "currentClass", "createdAt", "updatedAt"]
+    },
+    "TeacherProfile": {
+      "title": "TeacherProfile",
+      "description": "Authorized school teacher profile and subject assignments.",
+      "type": "object",
+      "properties": {
+        "teacherId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "userId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "schoolId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "qualification": { "type": "string", "maxLength": 160 },
+        "primarySubject": { "type": "string", "maxLength": 100 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["teacherId", "userId", "schoolId", "qualification", "primarySubject", "createdAt", "updatedAt"]
+    },
+    "ClassArm": {
+      "title": "ClassArm",
+      "description": "School class arm (e.g., Primary 4, JSS 2 Gold, SSS 1 Science).",
+      "type": "object",
+      "properties": {
+        "classId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "schoolId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "educationLevel": { "type": "string", "enum": ["Primary", "JSS", "SSS"] },
+        "className": { "type": "string", "maxLength": 32 },
+        "armLabel": { "type": "string", "maxLength": 64 },
+        "classTeacherId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "studentCount": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["classId", "schoolId", "educationLevel", "className", "armLabel", "classTeacherId", "studentCount", "createdAt", "updatedAt"]
+    },
+    "AcademicSession": {
+      "title": "AcademicSession",
+      "description": "School academic year session configuration.",
+      "type": "object",
+      "properties": {
+        "sessionId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "schoolId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "name": { "type": "string", "maxLength": 64 },
+        "startDate": { "type": "string", "maxLength": 32 },
+        "endDate": { "type": "string", "maxLength": 32 },
+        "isCurrent": { "type": "boolean" },
+        "ownerId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["sessionId", "schoolId", "name", "startDate", "endDate", "isCurrent", "ownerId", "createdAt", "updatedAt"]
+    },
+    "Term": {
+      "title": "Term",
+      "description": "School academic term within a session (First Term, Second Term, Third Term).",
+      "type": "object",
+      "properties": {
+        "termId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "sessionId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "schoolId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "name": { "type": "string", "enum": ["First Term", "Second Term", "Third Term"] },
+        "weeksCount": { "type": "number" },
+        "isCurrent": { "type": "boolean" },
+        "ownerId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["termId", "sessionId", "schoolId", "name", "weeksCount", "isCurrent", "ownerId", "createdAt", "updatedAt"]
+    },
+    "Curriculum": {
+      "title": "Curriculum",
+      "description": "Structured curriculum definition (built-in Nigerian or school-custom overlay).",
+      "type": "object",
+      "properties": {
+        "curriculumId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "name": { "type": "string", "maxLength": 160 },
+        "country": { "type": "string", "maxLength": 64 },
+        "source": { "type": "string", "maxLength": 200 },
+        "version": { "type": "string", "maxLength": 32 },
+        "academicPeriod": { "type": "string", "maxLength": 32 },
+        "educationLevel": { "type": "string", "enum": ["Primary", "JSS", "SSS"] },
+        "className": { "type": "string", "maxLength": 32 },
+        "schoolId": { "type": "string", "maxLength": 128 },
+        "isPlatformWide": { "type": "boolean" },
+        "approvalStatus": { "type": "string", "enum": ["draft", "pending_review", "approved", "sample_unverified"] },
+        "ownerId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["curriculumId", "name", "country", "source", "version", "academicPeriod", "educationLevel", "className", "schoolId", "isPlatformWide", "approvalStatus", "ownerId", "createdAt", "updatedAt"]
+    },
+    "CurriculumVersion": {
+      "title": "CurriculumVersion",
+      "description": "Version history and diff comparison record for a curriculum.",
+      "type": "object",
+      "properties": {
+        "versionId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "curriculumId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "schoolId": { "type": "string", "maxLength": 128 },
+        "isPlatformWide": { "type": "boolean" },
+        "versionNumber": { "type": "string", "maxLength": 32 },
+        "changelog": { "type": "string", "maxLength": 1000 },
+        "approvalStatus": { "type": "string", "enum": ["draft", "pending_review", "approved", "sample_unverified"] },
+        "createdBy": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["versionId", "curriculumId", "schoolId", "isPlatformWide", "versionNumber", "changelog", "approvalStatus", "createdBy", "createdAt"]
+    },
+    "Subject": {
+      "title": "Subject",
+      "description": "Curriculum subject definition within an education level and class.",
+      "type": "object",
+      "properties": {
+        "subjectId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "curriculumId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "schoolId": { "type": "string", "maxLength": 128 },
+        "isPlatformWide": { "type": "boolean" },
+        "educationLevel": { "type": "string", "enum": ["Primary", "JSS", "SSS"] },
+        "className": { "type": "string", "maxLength": 32 },
+        "name": { "type": "string", "maxLength": 100 },
+        "category": { "type": "string", "enum": ["Core", "Science", "Humanities", "Business & Vocational", "School Custom"] },
+        "isCompulsory": { "type": "boolean" },
+        "ownerId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["subjectId", "curriculumId", "schoolId", "isPlatformWide", "educationLevel", "className", "name", "category", "isCompulsory", "ownerId", "createdAt"]
+    },
+    "Topic": {
+      "title": "Topic",
+      "description": "Curriculum topic within a subject and term, storing hierarchy metadata and learning objectives.",
+      "type": "object",
+      "properties": {
+        "topicId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "curriculumId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "educationLevel": { "type": "string", "enum": ["Primary", "JSS", "SSS"] },
+        "className": { "type": "string", "maxLength": 32 },
+        "subject": { "type": "string", "maxLength": 100 },
+        "term": { "type": "string", "enum": ["First Term", "Second Term", "Third Term"] },
+        "weekNumber": { "type": "number" },
+        "title": { "type": "string", "maxLength": 200 },
+        "learningObjective": { "type": "string", "maxLength": 600 },
+        "lessonSummary": { "type": "string", "maxLength": 2000 },
+        "assessmentPrompt": { "type": "string", "maxLength": 600 },
+        "skillTag": { "type": "string", "maxLength": 120 },
+        "schoolId": { "type": "string", "maxLength": 128 },
+        "isPlatformWide": { "type": "boolean" },
+        "approvalStatus": { "type": "string", "enum": ["draft", "pending_review", "approved", "sample_unverified"] },
+        "ownerId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["topicId", "curriculumId", "educationLevel", "className", "subject", "term", "weekNumber", "title", "learningObjective", "lessonSummary", "assessmentPrompt", "skillTag", "schoolId", "isPlatformWide", "approvalStatus", "ownerId", "createdAt", "updatedAt"]
+    },
+    "LearningObjective": {
+      "title": "LearningObjective",
+      "description": "Measurable learning objective linked to a curriculum topic.",
+      "type": "object",
+      "properties": {
+        "objectiveId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "topicId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "schoolId": { "type": "string", "maxLength": 128 },
+        "isPlatformWide": { "type": "boolean" },
+        "description": { "type": "string", "maxLength": 600 },
+        "bloomTaxonomyLevel": { "type": "string", "enum": ["Remember", "Understand", "Apply", "Analyze", "Evaluate", "Create"] },
+        "measurableCriteria": { "type": "string", "maxLength": 600 },
+        "ownerId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["objectiveId", "topicId", "schoolId", "isPlatformWide", "description", "bloomTaxonomyLevel", "measurableCriteria", "ownerId", "createdAt"]
+    },
+    "Lesson": {
+      "title": "Lesson",
+      "description": "Structured digital lesson content linked to a curriculum topic.",
+      "type": "object",
+      "properties": {
+        "lessonId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "topicId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "schoolId": { "type": "string", "maxLength": 128 },
+        "isPlatformWide": { "type": "boolean" },
+        "title": { "type": "string", "maxLength": 200 },
+        "durationMinutes": { "type": "number" },
+        "bodyMarkdown": { "type": "string", "maxLength": 15000 },
+        "offlineAvailable": { "type": "boolean" },
+        "approvalStatus": { "type": "string", "enum": ["draft", "pending_approval", "approved_published"] },
+        "ownerId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["lessonId", "topicId", "schoolId", "isPlatformWide", "title", "durationMinutes", "bodyMarkdown", "offlineAvailable", "approvalStatus", "ownerId", "createdAt", "updatedAt"]
+    },
+    "LearningResource": {
+      "title": "LearningResource",
+      "description": "Supplementary digital learning resource linked to a topic.",
+      "type": "object",
+      "properties": {
+        "resourceId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "topicId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "schoolId": { "type": "string", "maxLength": 128 },
+        "isPlatformWide": { "type": "boolean" },
+        "title": { "type": "string", "maxLength": 200 },
+        "resourceType": { "type": "string", "enum": ["digital_textbook_chapter", "interactive_diagram", "simulation_link", "practice_worksheet"] },
+        "summary": { "type": "string", "maxLength": 2000 },
+        "estimatedReadMinutes": { "type": "number" },
+        "ownerId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["resourceId", "topicId", "schoolId", "isPlatformWide", "title", "resourceType", "summary", "estimatedReadMinutes", "ownerId", "createdAt"]
+    },
+    "Assignment": {
+      "title": "Assignment",
+      "description": "Class assignment created by an authorized teacher.",
+      "type": "object",
+      "properties": {
+        "assignmentId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "schoolId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "classId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "className": { "type": "string", "maxLength": 32 },
+        "subject": { "type": "string", "maxLength": 100 },
+        "topicId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "title": { "type": "string", "maxLength": 200 },
+        "instructions": { "type": "string", "maxLength": 3000 },
+        "dueDate": { "type": "string", "maxLength": 32 },
+        "maxScore": { "type": "number" },
+        "createdByTeacherId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["assignmentId", "schoolId", "classId", "className", "subject", "topicId", "title", "instructions", "dueDate", "maxScore", "createdByTeacherId", "createdAt", "updatedAt"]
+    },
+    "Question": {
+      "title": "Question",
+      "description": "Curriculum-aligned assessment question with Socratic hint.",
+      "type": "object",
+      "properties": {
+        "questionId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "topicId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "schoolId": { "type": "string", "maxLength": 128 },
+        "isPlatformWide": { "type": "boolean" },
+        "className": { "type": "string", "maxLength": 32 },
+        "subject": { "type": "string", "maxLength": 100 },
+        "prompt": { "type": "string", "maxLength": 1000 },
+        "correctIndex": { "type": "number" },
+        "socraticHint": { "type": "string", "maxLength": 600 },
+        "stepByStepSolution": { "type": "string", "maxLength": 1500 },
+        "skillTag": { "type": "string", "maxLength": 120 },
+        "examStandard": { "type": "string", "enum": ["Common Entrance", "BECE / JSCE", "WAEC / WASSCE", "NECO", "School Continuous Assessment"] },
+        "ownerId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["questionId", "topicId", "schoolId", "isPlatformWide", "className", "subject", "prompt", "correctIndex", "socraticHint", "stepByStepSolution", "skillTag", "examStandard", "ownerId", "createdAt"]
+    },
+    "Assessment": {
+      "title": "Assessment",
+      "description": "Quiz, continuous assessment, or terminal examination.",
+      "type": "object",
+      "properties": {
+        "assessmentId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "schoolId": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 200 },
+        "className": { "type": "string", "maxLength": 32 },
+        "subject": { "type": "string", "maxLength": 100 },
+        "term": { "type": "string", "enum": ["First Term", "Second Term", "Third Term"] },
+        "assessmentType": { "type": "string", "enum": ["continuous_assessment", "term_examination", "diagnostic_quiz"] },
+        "durationMinutes": { "type": "number" },
+        "ownerId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["assessmentId", "schoolId", "title", "className", "subject", "term", "assessmentType", "durationMinutes", "ownerId", "createdAt", "updatedAt"]
+    },
+    "Submission": {
+      "title": "Submission",
+      "description": "Student assessment submission record.",
+      "type": "object",
+      "properties": {
+        "submissionId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "assessmentId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "studentId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "schoolId": { "type": "string", "maxLength": 128 },
+        "className": { "type": "string", "maxLength": 32 },
+        "subject": { "type": "string", "maxLength": 100 },
+        "scoreObtained": { "type": "number" },
+        "maxScore": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["submissionId", "assessmentId", "studentId", "schoolId", "className", "subject", "scoreObtained", "maxScore", "createdAt"]
+    },
+    "Result": {
+      "title": "Result",
+      "description": "Official graded result record for a student submission.",
+      "type": "object",
+      "properties": {
+        "resultId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "submissionId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "studentId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "schoolId": { "type": "string", "maxLength": 128 },
+        "className": { "type": "string", "maxLength": 32 },
+        "subject": { "type": "string", "maxLength": 100 },
+        "score": { "type": "number" },
+        "maxScore": { "type": "number" },
+        "percentage": { "type": "number" },
+        "grade": { "type": "string", "enum": ["A1", "B2", "B3", "C4", "C5", "C6", "D7", "E8", "F9"] },
+        "teacherRemark": { "type": "string", "maxLength": 500 },
+        "recordedBy": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["resultId", "submissionId", "studentId", "schoolId", "className", "subject", "score", "maxScore", "percentage", "grade", "teacherRemark", "recordedBy", "createdAt"]
+    },
+    "StudentSkillMastery": {
+      "title": "StudentSkillMastery",
+      "description": "Student mastery score and progress on a curriculum skill.",
+      "type": "object",
+      "properties": {
+        "masteryId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "studentId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "schoolId": { "type": "string", "maxLength": 128 },
+        "className": { "type": "string", "maxLength": 32 },
+        "subject": { "type": "string", "maxLength": 100 },
+        "skillTag": { "type": "string", "maxLength": 120 },
+        "masteryScore": { "type": "number" },
+        "attemptsCount": { "type": "number" },
+        "status": { "type": "string", "enum": ["needs_remedial", "developing", "mastered"] },
+        "updatedAt": { "type": "string", "format": "date-time" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["masteryId", "studentId", "className", "subject", "skillTag", "masteryScore", "attemptsCount", "status", "createdAt", "updatedAt"]
+    },
+    "AILearningSession": {
+      "title": "AILearningSession",
+      "description": "Grounded AI tutoring session record for a student.",
+      "type": "object",
+      "properties": {
+        "sessionId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "studentId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "className": { "type": "string", "maxLength": 32 },
+        "subject": { "type": "string", "maxLength": 100 },
+        "topicTitle": { "type": "string", "maxLength": 200 },
+        "mode": { "type": "string", "enum": ["hint_first", "step_by_step", "exam_prep", "project_guidance"] },
+        "lastPrompt": { "type": "string", "maxLength": 1500 },
+        "lastResponse": { "type": "string", "maxLength": 5000 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["sessionId", "studentId", "className", "subject", "topicTitle", "mode", "lastPrompt", "lastResponse", "createdAt", "updatedAt"]
+    },
+    "TeacherMaterial": {
+      "title": "TeacherMaterial",
+      "description": "Teacher-generated Scheme of Work or Comprehensive Lesson Note with approval workflow.",
+      "type": "object",
+      "properties": {
+        "materialId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "materialType": { "type": "string", "enum": ["scheme_of_work", "lesson_note"] },
+        "title": { "type": "string", "maxLength": 200 },
+        "className": { "type": "string", "maxLength": 32 },
+        "subject": { "type": "string", "maxLength": 100 },
+        "term": { "type": "string", "enum": ["First Term", "Second Term", "Third Term"] },
+        "content": { "type": "string", "maxLength": 15000 },
+        "approvalStatus": { "type": "string", "enum": ["draft", "pending_approval", "approved_published"] },
+        "ownerId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "schoolId": { "type": "string", "maxLength": 128 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["materialId", "materialType", "title", "className", "subject", "term", "content", "approvalStatus", "ownerId", "schoolId", "createdAt", "updatedAt"]
+    },
+    "ApprovalRecord": {
+      "title": "ApprovalRecord",
+      "description": "Audit log of content review and approval by a school or platform administrator.",
+      "type": "object",
+      "properties": {
+        "approvalId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "schoolId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "targetType": { "type": "string", "enum": ["curriculum", "topic", "teacher_material"] },
+        "targetId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "targetTitle": { "type": "string", "maxLength": 200 },
+        "submittedBy": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "reviewedBy": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "status": { "type": "string", "enum": ["pending", "approved", "revision_requested"] },
+        "reviewerComment": { "type": "string", "maxLength": 1000 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["approvalId", "schoolId", "targetType", "targetId", "targetTitle", "submittedBy", "reviewedBy", "status", "reviewerComment", "createdAt", "updatedAt"]
+    },
+    "StudentProject": {
+      "title": "StudentProject",
+      "description": "Practical skill project submission and reflection record.",
+      "type": "object",
+      "properties": {
+        "projectId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "studentId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "schoolId": { "type": "string", "maxLength": 128 },
+        "className": { "type": "string", "maxLength": 32 },
+        "subject": { "type": "string", "maxLength": 100 },
+        "title": { "type": "string", "maxLength": 200 },
+        "practicalSkillFocus": { "type": "string", "maxLength": 300 },
+        "reflectionNotes": { "type": "string", "maxLength": 2000 },
+        "status": { "type": "string", "enum": ["in_progress", "submitted", "evaluated"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["projectId", "studentId", "className", "subject", "title", "practicalSkillFocus", "reflectionNotes", "status", "createdAt", "updatedAt"]
+    },
+    "LearningAchievement": {
+      "title": "LearningAchievement",
+      "description": "Competency badge awarded for demonstrated skill mastery.",
+      "type": "object",
+      "properties": {
+        "achievementId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "studentId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "schoolId": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 160 },
+        "criteriaDemonstrated": { "type": "string", "maxLength": 500 },
+        "skillTag": { "type": "string", "maxLength": 120 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["achievementId", "studentId", "title", "criteriaDemonstrated", "skillTag", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/admins/{adminId}": {
+      "schema": { "$ref": "#/entities/Admin" },
+      "description": "Bootstrapped platform administrator records."
+    },
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "User profiles isolated by owner UID with privilege escalation guards."
+    },
+    "/roles/{roleId}": {
+      "schema": { "$ref": "#/entities/RolePermission" },
+      "description": "System role definitions."
+    },
+    "/schools/{schoolId}": {
+      "schema": { "$ref": "#/entities/School" },
+      "description": "School configurations and academic session settings."
+    },
+    "/school_memberships/{membershipId}": {
+      "schema": { "$ref": "#/entities/SchoolMembership" },
+      "description": "Deterministic school membership and role authorization records."
+    },
+    "/students/{studentId}": {
+      "schema": { "$ref": "#/entities/StudentProfile" },
+      "description": "Student academic profiles."
+    },
+    "/teachers/{teacherId}": {
+      "schema": { "$ref": "#/entities/TeacherProfile" },
+      "description": "Teacher profiles scoped to authorized schools."
+    },
+    "/classes/{classId}": {
+      "schema": { "$ref": "#/entities/ClassArm" },
+      "description": "School class arms."
+    },
+    "/academic_sessions/{sessionId}": {
+      "schema": { "$ref": "#/entities/AcademicSession" },
+      "description": "School academic sessions."
+    },
+    "/terms/{termId}": {
+      "schema": { "$ref": "#/entities/Term" },
+      "description": "School academic terms."
+    },
+    "/curricula/{curriculumId}": {
+      "schema": { "$ref": "#/entities/Curriculum" },
+      "description": "Curriculum records with platform-wide immutability protection."
+    },
+    "/curriculum_versions/{versionId}": {
+      "schema": { "$ref": "#/entities/CurriculumVersion" },
+      "description": "Curriculum version history and comparison logs."
+    },
+    "/subjects/{subjectId}": {
+      "schema": { "$ref": "#/entities/Subject" },
+      "description": "Subjects mapped to curricula and classes."
+    },
+    "/topics/{topicId}": {
+      "schema": { "$ref": "#/entities/Topic" },
+      "description": "Curriculum topics, objectives, lessons, and assessments."
+    },
+    "/learning_objectives/{objectiveId}": {
+      "schema": { "$ref": "#/entities/LearningObjective" },
+      "description": "Granular Bloom-taxonomy learning objectives."
+    },
+    "/lessons/{lessonId}": {
+      "schema": { "$ref": "#/entities/Lesson" },
+      "description": "Structured lesson content."
+    },
+    "/learning_resources/{resourceId}": {
+      "schema": { "$ref": "#/entities/LearningResource" },
+      "description": "Digital library learning resources."
+    },
+    "/assignments/{assignmentId}": {
+      "schema": { "$ref": "#/entities/Assignment" },
+      "description": "Teacher-assigned classwork and homework."
+    },
+    "/questions/{questionId}": {
+      "schema": { "$ref": "#/entities/Question" },
+      "description": "Curriculum-aligned assessment questions."
+    },
+    "/assessments/{assessmentId}": {
+      "schema": { "$ref": "#/entities/Assessment" },
+      "description": "Quizzes, continuous assessments, and examinations."
+    },
+    "/submissions/{submissionId}": {
+      "schema": { "$ref": "#/entities/Submission" },
+      "description": "Student assessment submissions."
+    },
+    "/results/{resultId}": {
+      "schema": { "$ref": "#/entities/Result" },
+      "description": "Graded student assessment results."
+    },
+    "/skill_mastery/{masteryId}": {
+      "schema": { "$ref": "#/entities/StudentSkillMastery" },
+      "description": "Student skill mastery records."
+    },
+    "/ai_sessions/{sessionId}": {
+      "schema": { "$ref": "#/entities/AILearningSession" },
+      "description": "Student AI tutor interaction logs."
+    },
+    "/teacher_materials/{materialId}": {
+      "schema": { "$ref": "#/entities/TeacherMaterial" },
+      "description": "Teacher-generated schemes of work and lesson notes."
+    },
+    "/approval_records/{approvalId}": {
+      "schema": { "$ref": "#/entities/ApprovalRecord" },
+      "description": "Content review and approval audit records."
+    },
+    "/projects/{projectId}": {
+      "schema": { "$ref": "#/entities/StudentProject" },
+      "description": "Student practical skill projects."
+    },
+    "/achievements/{achievementId}": {
+      "schema": { "$ref": "#/entities/LearningAchievement" },
+      "description": "Student competency achievements."
+    }
+  }
+}

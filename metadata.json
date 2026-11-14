@@ -1,0 +1,6 @@
+{
+  "name": "ORION — Discover Beyond What You Know",
+  "description": "ORION — Discover beyond what you know. An AI-powered learning ecosystem for Nigeria and beyond supporting Primary 1–6, JSS 1–3, and SSS 1–3 with ORION Learn, ORION Teach, ORION Schools, and ORION Labs.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

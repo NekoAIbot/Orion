@@ -1,0 +1,647 @@
+
+ORION — OFFICIAL BRAND ESTABLISHMENT, NAME TRANSFORMATION AND APPLICATION-WIDE REBRANDING
+
+PROJECT DIRECTIVE
+
+We are officially transforming the existing Kọ́kọ́Learn application into ORION.
+
+ORION is the permanent product identity of this application and its entire educational ecosystem.
+
+This is a comprehensive brand transformation and application-wide rebranding exercise. It is NOT a request to build a new application, redesign the backend, or replace the existing technical foundation.
+
+The objective is to establish ORION as a distinctive, recognisable, premium AI-powered educational technology brand and integrate that identity consistently throughout the entire existing application.
+
+The attached ORION Education Brand Identity Board is the authoritative visual reference.
+
+IMPORTANT: Follow the specific logo and wordmark selections below. Do not independently reinterpret, replace or redesign them.
+
+---
+
+1. OFFICIAL BRAND IDENTITY
+
+Official brand name: ORION
+
+Official tagline: Discover beyond what you know.
+
+Brand positioning: An AI-powered learning ecosystem for Nigeria and beyond.
+
+Brand promise: Make quality learning more accessible, intelligent, engaging and effective.
+
+Brand personality:
+
+- Intelligent.
+- Ambitious.
+- Welcoming.
+- Innovative.
+- Trustworthy.
+- Inclusive.
+- Forward-looking.
+
+ORION should feel like a complete learning environment rather than an ordinary school management application with an AI chatbot attached.
+
+It must appeal to students, teachers, schools, parents and independent learners while remaining capable of expanding into tertiary education and lifelong learning.
+
+2. CRITICAL — OFFICIAL ORION WORDMARK
+
+This is one of the most important requirements of the entire branding exercise.
+
+Use the exact visual lettering of the word ORION shown prominently in the attached ORION Education Brand Identity Board.
+
+Specifically, reference the large uppercase ORION lettering positioned immediately above:
+
+"Discover beyond what you know."
+
+That exact lettering is the official ORION wordmark.
+
+Do not interpret this as a general instruction to use Montserrat Bold, Montserrat ExtraBold or another similar font.
+
+We want the actual visual character of the lettering reproduced as closely as possible.
+
+Required characteristics
+
+Preserve:
+
+- The exact uppercase appearance.
+- The bold geometric construction.
+- The distinctive character shapes.
+- The proportions and widths of the letters.
+- The thickness and weight.
+- The spacing between characters.
+- The overall visual balance and alignment.
+- The recognisable appearance of the complete word.
+
+The wordmark must look like the lettering in the attached reference, not simply the word ORION typed in a standard font.
+
+Technical implementation
+
+Treat the wordmark as a custom brand asset.
+
+If the original vector artwork or exact font is unavailable, recreate the lettering faithfully using vector outlines or an equivalent scalable format.
+
+Produce clean, high-resolution assets suitable for different screen sizes and resolutions.
+
+Maintain:
+
+- Ivory wordmark for dark forest-green surfaces.
+- Forest-green wordmark for appropriate light surfaces.
+- Consistent proportions across all placements.
+
+Do not stretch, distort, compress, italicise or arbitrarily modify the wordmark.
+
+Application-wide wordmark consistency
+
+Use the approved wordmark consistently on:
+
+- Landing page.
+- Main application header.
+- Desktop navigation.
+- Mobile navigation.
+- Login and registration screens.
+- Loading and splash screens.
+- Student workspace.
+- Teacher workspace.
+- School administrator workspace.
+- Independent learner workspace.
+- PWA identity and application presentation.
+- Other prominent brand placements.
+
+The application name must always be presented as ORION in the approved uppercase wordmark style wherever a prominent brand presentation is appropriate.
+
+Ordinary text references to the product may use the text ORION, but the primary visual brand presentation must use the custom wordmark.
+
+3. CRITICAL — OFFICIAL LOGO AND APPLICATION ICON
+
+Select and use the FIRST DARK-THEMED APPLICATION ICON shown in the attached brand identity board.
+
+This is the selected official ORION symbol.
+
+It consists of:
+
+- A deep forest-green square background.
+- An ivory human-inspired figure reaching upwards.
+- Gold sweeping curved elements.
+- A gold four-point star positioned above the figure.
+
+This is the approved primary logo symbol and application icon.
+
+Strict selection requirements
+
+Do not select:
+
+- The second gold-background icon.
+- The third ivory-background icon.
+- The standalone gold star.
+- Any alternative symbol from the brand board.
+
+The first dark-themed icon is the selected design.
+
+Do not replace its human figure with a book, graduation cap, rocket, generic AI symbol or unrelated education illustration.
+
+Preserve the selected symbol's defining visual characteristics, composition and proportions.
+
+Required logo assets
+
+Create:
+
+1. Primary dark-background logo lockup.
+2. Light-background logo lockup.
+3. Standalone dark-themed application icon.
+4. Compact logo for mobile navigation.
+5. Monochrome version for suitable use cases.
+6. Scalable vector logo assets.
+7. Appropriate PNG versions for application and PWA use.
+
+Official horizontal logo lockup
+
+The primary horizontal brand lockup must combine:
+
+- The selected first dark-themed logo symbol.
+- The approved custom uppercase ORION wordmark.
+- The tagline: Discover beyond what you know.
+
+The logo symbol and wordmark must feel like one unified brand.
+
+Do not use the entire brand board as the logo. Extract and recreate the actual approved logo components as individual production assets.
+
+4. OFFICIAL COLOUR SYSTEM
+
+The approved ORION colour identity is the forest-green, teal, gold and ivory direction established in the earlier brand development.
+
+Do not use the earlier blue-and-purple ORION colour concept.
+
+Official palette
+
+Forest Green — #102D2A
+
+- Primary brand colour.
+- Main navigation and brand surfaces.
+- Dark application backgrounds.
+- Major identity elements.
+
+Growth Teal — #65A995
+
+- Secondary brand colour.
+- Interactive elements.
+- Secondary buttons and highlights.
+- Progress and supporting visual indicators.
+
+Discovery Gold — #E6A65D
+
+- Logo accents.
+- Achievement indicators.
+- Important visual emphasis.
+- Selected highlights and decorative details.
+
+Warm Ivory — #F7F3E9
+
+- Light application surfaces.
+- Reading-friendly backgrounds.
+- Text and logo contrast against dark surfaces.
+
+Colour implementation rules
+
+Forest green should be the dominant brand identity.
+
+Teal should provide balance and distinguish interactive elements.
+
+Gold should be used selectively. Do not flood the interface with gold.
+
+Ivory and suitable neutral surfaces should support readability, especially in educational content.
+
+Maintain accessible colour contrast across all interfaces.
+
+Do not use the palette inconsistently across different workspaces.
+
+5. TYPOGRAPHY
+
+Use:
+
+Montserrat
+
+- Custom ORION wordmark reference.
+- Main headings.
+- Prominent titles.
+- Section headings.
+
+Inter
+
+- Body text.
+- Navigation.
+- Forms.
+- Descriptions.
+- Educational content.
+- Dashboard labels.
+- Supporting interface text.
+
+The custom ORION wordmark must take precedence over ordinary Montserrat text in prominent brand placements.
+
+6. OFFICIAL PRODUCT ARCHITECTURE
+
+The existing application becomes the ORION ecosystem.
+
+The official product modules are:
+
+ORION Learn
+
+Student learning, independent learning, AI tutoring, curriculum exploration, assessments, assignments, quizzes and learning missions.
+
+ORION Teach
+
+Teacher workspace, schemes of work, lesson notes, assignments, classroom resources and teaching preparation tools.
+
+ORION Schools
+
+School administration, school-specific curriculum management, learner progress monitoring and educational analytics.
+
+ORION Labs
+
+Virtual science laboratories, scientific simulations, practical discovery and interactive experiments.
+
+These are modules within one unified ORION platform.
+
+Do not create duplicate applications, duplicate workspaces or unnecessary parallel implementations.
+
+Rebrand the existing functionality under the approved product architecture.
+
+7. APPLICATION-WIDE BRAND TRANSFORMATION
+
+Inspect the entire existing application before making changes.
+
+The rebranding must extend beyond the landing page.
+
+Apply the ORION identity consistently to every existing user-facing part of the ecosystem.
+
+A. Public-facing experience
+
+- Landing page.
+- Hero section.
+- Main navigation.
+- Footer.
+- Product descriptions.
+- Calls to action.
+- Brand illustrations and visual elements.
+
+B. Authentication and accounts
+
+- Login.
+- Google sign-in presentation.
+- Registration.
+- Account selection.
+- User profile.
+- Account settings.
+- Authentication-related messages.
+
+C. Student experience
+
+- Student dashboard.
+- Curriculum browser.
+- Subject and topic pages.
+- AI tutor.
+- Assessments.
+- Quizzes.
+- Learning missions.
+- Progress indicators.
+- Achievements.
+- Offline learning experience.
+
+D. Teacher experience
+
+- Teacher dashboard.
+- Scheme-of-work generator.
+- Lesson-note generator.
+- Assignment creation.
+- Classroom resources.
+- Teaching materials.
+- Content review and approval interfaces.
+
+E. School experience
+
+- School administrator dashboard.
+- School configuration.
+- User and role management interfaces.
+- School curriculum management.
+- Learning analytics.
+- Student progress monitoring.
+
+F. Independent learner experience
+
+- Learning dashboard.
+- Curriculum discovery.
+- AI tutoring.
+- Learning progress.
+- Assessments and learning resources.
+
+G. ORION Labs
+
+- Virtual science laboratories.
+- Chemistry simulations.
+- Physics simulations.
+- Biology simulations.
+- Practical discovery interfaces.
+
+H. Shared interface elements
+
+- Buttons.
+- Cards.
+- Forms.
+- Tables.
+- Dialogues.
+- Navigation menus.
+- Notifications.
+- Empty states.
+- Error states.
+- Loading states.
+- Confirmation messages.
+- Settings.
+- Responsive layouts.
+
+I. Application identity
+
+- Browser title.
+- Page metadata.
+- PWA name.
+- PWA short name.
+- Application icons.
+- Splash screen.
+- Installation experience.
+- Manifest configuration.
+
+Remove visible Kọ́kọ́Learn branding where it represents the former product identity.
+
+Do not remove legitimate educational content, curriculum terminology or internal technical references merely because they contain the old name.
+
+8. COMPLETE VISUAL DESIGN SYSTEM
+
+Establish a central, reusable ORION design system.
+
+Do not implement the branding as disconnected CSS changes on individual pages.
+
+Create reusable design tokens and shared components.
+
+The design system should include:
+
+- Official colour variables.
+- Typography definitions.
+- Wordmark and logo assets.
+- Button styles.
+- Navigation styles.
+- Card styles.
+- Form styles.
+- Dashboard components.
+- Spacing rules.
+- Border and radius conventions.
+- Responsive breakpoints.
+- Accessible interaction states.
+- Consistent hover, focus, active and disabled states.
+
+Visual direction
+
+The application should feel:
+
+- Premium.
+- Modern.
+- Clean.
+- Intelligent.
+- Welcoming.
+- Educational.
+- Consistent.
+- Mobile-first.
+
+Use the dark forest-green identity for major brand surfaces and navigation.
+
+Use lighter surfaces for reading-heavy learning experiences where appropriate.
+
+Ensure the design works across mobile phones, tablets and desktop screens.
+
+Avoid
+
+- Excessive gradients.
+- Unnecessary animations.
+- Overuse of gold.
+- Poor text contrast.
+- Generic AI-dashboard templates.
+- Unrelated icons.
+- Inconsistent typography.
+- Different branding styles between user roles.
+- Decorative elements that interfere with learning.
+
+The design must remain practical, readable and accessible for children, teachers and administrators.
+
+9. PRESERVE THE EXISTING TECHNICAL FOUNDATION
+
+This requirement is mandatory.
+
+The task is a branding and frontend integration exercise.
+
+Do not rebuild, replace or unnecessarily modify the existing backend.
+
+Preserve:
+
+- Existing Firebase project.
+- Existing Firestore database.
+- Existing authentication configuration.
+- Google sign-in.
+- Firestore collections and data structures.
+- Existing security rules.
+- School-level data isolation.
+- Platform administrator provisioning and authorization.
+- Server-side Gemini integration.
+- AI endpoint authentication.
+- Server-side role checks.
+- Curriculum hierarchy.
+- Curriculum data.
+- Existing student workflows.
+- Existing teacher workflows.
+- Existing school administrator workflows.
+- Existing independent learner functionality.
+- Existing PWA and offline functionality.
+- Existing API routes.
+- Existing persistence services.
+- Existing tests.
+- Existing security controls.
+
+Do not rename:
+
+- Firebase project IDs.
+- Firestore database IDs.
+- Collection names.
+- API routes.
+- Authentication identifiers.
+- Internal database fields.
+- Technical identifiers required by existing functionality.
+
+The public-facing brand and internal technical architecture are separate concerns.
+
+Do not reintroduce hardcoded email-based administrator authorization.
+
+Do not weaken existing authentication, authorization or security protections.
+
+Do not remove existing functionality simply to simplify the rebranding.
+
+10. IMPLEMENTATION PROCESS
+
+Work in controlled stages.
+
+STAGE A — EXISTING APPLICATION AUDIT
+
+Inspect the existing project before changing anything.
+
+Review:
+
+- Source-code structure.
+- Existing components.
+- Routing.
+- CSS and styling architecture.
+- Existing logo and image assets.
+- Application configuration.
+- PWA configuration.
+- Shared components.
+- Existing branding references.
+
+Identify all files and locations that require branding changes.
+
+Do not assume the application structure. Inspect it.
+
+STAGE B — OFFICIAL BRAND FOUNDATION
+
+Establish the ORION design system.
+
+Create:
+
+- Central brand configuration.
+- Colour tokens.
+- Typography tokens.
+- Official wordmark assets.
+- Approved logo assets.
+- Application icons.
+- Shared branding components.
+- Reusable visual components.
+
+Ensure the approved logo and wordmark are reusable throughout the application.
+
+STAGE C — APPLICATION-WIDE REBRANDING
+
+Update the landing page and every existing workspace.
+
+Ensure students, teachers, school administrators and independent learners experience one coherent ORION identity.
+
+Retain appropriate differences in each workspace's functionality and layout.
+
+Do not force every workspace into an identical dashboard.
+
+STAGE D — PWA AND APPLICATION METADATA
+
+Update:
+
+- Application name.
+- Short name.
+- PWA manifest.
+- Application icons.
+- Browser title.
+- Metadata.
+- Splash and loading presentation.
+- Installation experience.
+
+Use the selected official dark-themed ORION icon.
+
+Ensure the PWA remains functional.
+
+STAGE E — FUNCTIONAL AND VISUAL VERIFICATION
+
+Run the existing build, linting and automated tests.
+
+Inspect the actual application after implementation.
+
+Verify that:
+
+1. The correct uppercase custom ORION wordmark is used.
+2. The wordmark matches the attached reference.
+3. The first dark-themed logo icon is used.
+4. The correct colour palette is applied.
+5. The old visible Kọ́kọ́Learn identity has been replaced.
+6. All major workspaces use the same brand system.
+7. Mobile layouts remain usable.
+8. Authentication still works.
+9. Existing roles retain their permissions.
+10. Curriculum browsing still works.
+11. Teacher tools remain functional.
+12. AI endpoints retain authentication.
+13. Firestore security remains unchanged.
+14. Existing data is preserved.
+15. Offline functionality remains operational.
+16. PWA installation remains functional.
+
+11. STRICT OPERATIONAL BOUNDARIES
+
+This task authorises implementation of the ORION brand identity and application-wide visual rebranding within the existing project.
+
+It does NOT authorise:
+
+- Public deployment.
+- Production release.
+- Enabling paid billing.
+- Purchasing infrastructure.
+- Creating a new Firebase project.
+- Changing Firebase security rules.
+- Changing administrator permissions.
+- Changing administrator provisioning.
+- Database migrations.
+- Destructive database operations.
+- Deleting existing functionality.
+- Replacing the existing backend.
+- Publishing to an app store.
+- Unapproved external integrations.
+
+Do not perform these actions.
+
+If an issue requires changes beyond the approved scope, explain the issue and request explicit approval before proceeding.
+
+Do not claim that a feature has been verified unless it has actually been tested.
+
+12. FINAL IMPLEMENTATION REPORT
+
+After implementation, provide a detailed report directly in your response.
+
+Include:
+
+1. Summary of the completed ORION rebranding.
+2. Areas of the application updated.
+3. Files created.
+4. Files modified.
+5. Official wordmark implementation details.
+6. Logo and application icon assets created.
+7. Confirmation that the first dark-themed icon was selected.
+8. Confirmation that the exact uppercase wordmark reference was followed.
+9. Colour system implementation.
+10. Typography implementation.
+11. Shared design system and reusable components.
+12. PWA and metadata changes.
+13. Build results.
+14. Lint results.
+15. Automated test results.
+16. Visual verification results.
+17. Functional regressions, if any.
+18. Remaining Kọ́kọ́Learn references and why they remain.
+19. Outstanding tasks and limitations.
+
+Clearly distinguish completed work, verified work, incomplete work and assumptions.
+
+Do not provide a superficial success summary.
+
+13. FINAL PRODUCT OBJECTIVE
+
+Transform the existing Kọ́kọ́Learn application into ORION, a unified, distinctive and recognisable AI-powered learning ecosystem.
+
+The final identity must combine:
+
+- The exact bold uppercase ORION wordmark from the attached brand identity board, positioned above the tagline "Discover beyond what you know."
+- The FIRST dark-themed ORION application icon featuring the ivory human figure, gold sweeping elements and gold star.
+- The official forest-green, growth-teal, discovery-gold and warm-ivory colour palette.
+- The approved Montserrat and Inter typography system.
+- A consistent, premium visual identity throughout the entire application.
+
+The ORION name, wordmark, logo symbol, colours and design language must work together as one permanent brand identity.
+
+The final result must feel like a fully established educational technology ecosystem, not an existing application with its name and colours casually changed.
+
+Build the ORION identity into the entire existing product while preserving its functionality, security, data, architecture and technical integrity.

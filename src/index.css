@@ -1,0 +1,40 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    /* Official ORION Brand Typography */
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-display: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+
+    /* Official ORION Brand Colour Palette */
+    --orion-forest: #102D2A;
+    --orion-forest-deep: #0A1F1D;
+    --orion-forest-surface: #143834;
+    --orion-teal: #65A995;
+    --orion-gold: #E6A65D;
+    --orion-ivory: #F7F3E9;
+    --orion-ivory-card: #FDFBF7;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--orion-ivory);
+    color: var(--orion-forest);
+  }
+
+  .dark body {
+    background-color: var(--orion-forest-deep);
+    color: var(--orion-ivory);
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-mono, .tabular-nums {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+}
